@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using dotnet_code_challenge.Models;
@@ -35,7 +36,31 @@ namespace dotnet_code_challenge.Services
                 var horseData = fileProcessor.ReadFile(dataFile.FullName);
                 horses.AddRange(horseData);
             }
+
+            //output the horse names
+            DisplayHorseNameInPriceOrder(horses);
         }
 
+
+        private void DisplayMessage(string message)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"*** {message} ***");
+        }
+
+        /// <summary>
+        /// Display the horse names in price ascending order
+        /// </summary>
+        /// <param name="horseList"></param>
+        private void DisplayHorseNameInPriceOrder(List<Horse> horseList)
+        {
+
+            DisplayMessage("Horses in price order");
+
+            foreach (var horse in horseList.OrderBy(x => x.Price))
+            {
+                Console.WriteLine($"{horse.Name} - {horse.Price}");
+            }
+        }
     }
 }
