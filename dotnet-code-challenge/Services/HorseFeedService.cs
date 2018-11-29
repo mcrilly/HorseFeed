@@ -31,8 +31,7 @@ namespace dotnet_code_challenge.Services
 
                 var horses = new List<Horse>();
 
-                var di = new DirectoryInfo(folderPath);
-                var files = di.GetFiles();
+                var files = GetAllFilesInFolder(folderPath);
                 foreach (var dataFile in files)
                 {
                     //determine the type of file being handled
@@ -83,5 +82,26 @@ namespace dotnet_code_challenge.Services
                 Console.WriteLine($"{horse.Name}");
             }
         }
+
+
+        /// <summary>
+        /// return a list of the files in the provider folderPath
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <returns></returns>
+        public FileInfo[] GetAllFilesInFolder(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+            {
+                _logger.LogError($"Folder does not exist: {folderPath}");
+
+                return new FileInfo[0];
+            }
+
+            var di = new DirectoryInfo(folderPath);
+            return di.GetFiles();
+        }
+
+
     }
 }

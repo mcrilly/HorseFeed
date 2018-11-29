@@ -45,6 +45,7 @@ namespace dotnet_code_challenge.Services
                             Id = rawDataParticipant.Id,
                             Price = price
                         };
+                        //add this new horse to the list
                         jsonHorses.Add(horse);
                     }
                 }

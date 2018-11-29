@@ -14,6 +14,11 @@ namespace dotnet_code_challenge.Services
             _logger = logger;
         }
 
+        /// <summary>
+        /// Using the file extension return which implementation of the IFeedDataProcessor to be used
+        /// </summary>
+        /// <param name="fileExtension"></param>
+        /// <returns></returns>
         public IFeedDataProcessor ProcessDataFile(string fileExtension)
         {
             try
