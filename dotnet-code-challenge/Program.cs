@@ -8,8 +8,6 @@ namespace dotnet_code_challenge
 {
     class Program
     {
-        //public static IContainer Container { get; set; }
-
         static void Main(string[] args)
         {
             var serviceCollection = new ServiceCollection()
@@ -20,11 +18,12 @@ namespace dotnet_code_challenge
 
             containerBuilder.Populate(serviceCollection);
 
-            containerBuilder.RegisterType<HorseService>().As<IHorseService>();
+            containerBuilder.RegisterType<FeedDataProcessingFactory>().As<IFeedDataProcessingFactory>();
+            containerBuilder.RegisterType<HorseFeedService>().As<IHorseFeedService>();
 
             var container = containerBuilder.Build();
 
-            var horseService = container.Resolve<IHorseService>(); 
+            var horseService = container.Resolve<IHorseFeedService>(); 
             horseService.ReadDataFilesAndOutputDetails();
 
             Console.WriteLine("Hello World!");

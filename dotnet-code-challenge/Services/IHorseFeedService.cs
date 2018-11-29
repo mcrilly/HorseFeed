@@ -1,6 +1,6 @@
 ﻿namespace dotnet_code_challenge.Services
 {
-    public interface IHorseService
+    public interface IHorseFeedService
     {
         void ReadDataFilesAndOutputDetails();
     }
